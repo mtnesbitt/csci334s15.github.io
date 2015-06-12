@@ -132,10 +132,6 @@
 
 		});
 	}
-
-	var mouseOver = function(d) {
-		d3.select("#tooltip").transition().duration(200).style("opacity", .9);
-
 		// state
 		if (d.properties.name) {
 			d3.select("#tooltip").html(gradientMap.tooltipHtml(d.properties.name, d.properties.value))  
