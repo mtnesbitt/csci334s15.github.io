@@ -19,6 +19,7 @@
 
 	var getStateValuesFunction = function(data, stateName) {};
 
+
 	var getCountyValuesFunction = function(data, countyName) {};
 	
 	// default values for the color range
@@ -240,12 +241,16 @@
 
 		d3.select("#stateName").remove();
 
-		d3.select("#mapSVG")
-			.append("text")
-			.attr("x", 100)
-			.attr("y", 100)
-			.attr("id", "stateName")
-			.text(d.properties.name);
+		svg.append("text")
+        	.attr("x", 600)
+            .attr("y", 35)
+            .attr("text-align", "right")
+            .text(d.properties.name)
+            .attr("fill", "black")
+            .attr("class", "text")
+            .attr("id", "stateName");
+			
+		
 
 		var abbreviation = state_abbreviations[d.properties.name];
 		var path = abbreviation + "Counties.json";
@@ -262,7 +267,7 @@
 		d3.selectAll(".rectangle").remove();
 		for(var i = 0; i < boxNum; i++){
 			svg.append("rect")
-			   .attr("x", 50 + 25*i)
+			   .attr("x", 55 + 25*i)
 			   .attr("y", 10)
 			   .attr("width", 25)
 			   .attr("height", 25)
@@ -281,7 +286,7 @@
 		svg.append("text")
         	.attr("x", 0)
             .attr("y", 25)
-            .text("min = " + Number(min).toFixed(2))
+            .text("\00  min = " + Number(min).toFixed(2) + " ")
         	.attr("font-family", "sans-serif")
             .attr("font-size", "10px")
             .attr("fill", "black")
@@ -292,17 +297,20 @@
 	var drawMaxLabel = function(position) {
 		d3.select("#maxLabel").remove();
 		svg.append("text")
-        	.attr("x", position)
+        	.attr("x", 8 + position)
             .attr("y", 25)
-            .text("max = " + Number(max).toFixed(2))
+            .text("\00  max = " + Number(max).toFixed(2))
         	.attr("font-family", "sans-serif")
             .attr("font-size", "10px")
             .attr("fill", "black")
+            .attr("class", "text")
             .attr("id", "maxLabel");
+        
+        
 	}
 
 	var drawContinuousGrad = function(){
-		var minY = 10;
+		var minY = 15;
 		var maxY = 300;
 
 		d3.select("linearGradient").remove();
@@ -328,7 +336,7 @@
 		    
 		svg
 		    .append("rect")
-		    .attr("x", 50)
+		    .attr("x", 54)
 		    .attr("y", 10)
 		    .attr("width", 250)
 		    .attr("height", 25)
@@ -336,7 +344,7 @@
 		    .attr("class", "rectangle");
 
 		drawMinLabel();
-		drawMaxLabel(300);
+		drawMaxLabel(298);
 
 	}
 
